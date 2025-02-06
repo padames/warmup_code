@@ -65,6 +65,7 @@ bool exists(int *ints, int size, int k){
 }
 
 int main() {
+    // Assumptions: the array is never null and it is always sorted in increasing order 
     int ints[] = {-9, 14, 37, 46, 102};
     cout << std::boolalpha << exists(ints, 5, 102) << endl;
     cout << std::boolalpha << exists(ints, 5, 36) << endl;
