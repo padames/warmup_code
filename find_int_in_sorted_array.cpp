@@ -12,28 +12,28 @@ using namespace std;
 
 bool exists(int *ints, int size, int k){
     if (size <= 0) {
-        cout << " =========END size==0 ========" << endl << endl; 
+        // cout << " =========END size==0 ========" << endl << endl; 
         return false;
     }
-    cout << " ======= Entering \"exists\" =======" << endl;
-    cout << "size = " << size << endl;
+    // cout << " ======= Entering \"exists\" =======" << endl;
+    // cout << "size = " << size << endl;
  
 
     int size_left = size/2;
 
     if ( size_left == 0 ) {
-        cout << " Found size_left == 0" << endl;
-        cout << " *ints == k ?? ==> " << *ints <<  " == " << k << "? ==> " << boolalpha << "" << (*ints == k) << endl;
-        cout << " =========The End========" << endl << endl; 
+        // cout << " Found size_left == 0" << endl;
+        // cout << " *ints == k ?? ==> " << *ints <<  " == " << k << "? ==> " << boolalpha << "" << (*ints == k) << endl;
+        // cout << " =========The End========" << endl << endl; 
         bool result = (*ints == k)? true: false;
         return result;
     }
     
     if ( ints[size_left -1] > k ) {
-        cout << "ints[size_left - 1] > k ==> " << ints[size_left-1] << " > " << k << endl;
+        // cout << "ints[size_left - 1] > k ==> " << ints[size_left-1] << " > " << k << endl;
         return exists( ints, size_left, k); 
     } else {
-        cout << "ints[size_left - 1] <= k ==> " << ints[size_left-1] << " >= " << k << endl;
+        // cout << "ints[size_left - 1] <= k ==> " << ints[size_left-1] << " >= " << k << endl;
         return exists( ints + size_left, size - size_left, k);
     }
     // int *end_left = ints + size_left;
@@ -64,9 +64,21 @@ bool exists(int *ints, int size, int k){
     // return false;
 }
 
+
+bool exists2(int *ints, int size, int k) {
+    if (size <= 0 ) {
+        return false;
+    }
+    return binary_search(ints, ints + size, k);    
+}
+
+
 int main() {
     // Assumptions: the array is never null and it is always sorted in increasing order 
     int ints[] = {-9, 14, 37, 46, 102};
-    cout << std::boolalpha << exists(ints, 5, 102) << endl;
-    cout << std::boolalpha << exists(ints, 5, 36) << endl;
+    cout << std::boolalpha << exists2(ints, 5, 102) << endl;
+    cout << std::boolalpha << exists2(ints, 5, 36) << endl;
+    int ints2[] = {-9, 14, 46, 102};
+    cout << std::boolalpha << exists2(ints2, 4, 102) << endl;
+    cout << std::boolalpha << exists2(ints2, 4, 36) << endl;
 }
